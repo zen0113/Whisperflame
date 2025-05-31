@@ -3,7 +3,6 @@ using UnityEngine;
 public class MeteoProjectile : MonoBehaviour
 {
     public float fallSpeed = 5f;
-    PlayerHealth player;
 
     void Update()
     {
@@ -18,9 +17,7 @@ public class MeteoProjectile : MonoBehaviour
             if (player != null)
             {
                 player.Damaged();
-                Debug.Log("µ¥¹ÌÁö +1");
             }
-            Destroy(gameObject);
         }
         Destroy(gameObject);
     }

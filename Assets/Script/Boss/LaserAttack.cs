@@ -27,7 +27,24 @@ public class LaserAttack : MonoBehaviour
         Destroy(warn);
 
         GameObject beam = Instantiate(laserBeamPrefab, lane.position, Quaternion.identity);
+        beam.AddComponent<LaserBeamCollision>();
         yield return new WaitForSeconds(laserDuration);
         Destroy(beam);
+    }
+}
+
+// 레이저 빔 충돌 처리를 위한 새로운 클래스
+public class LaserBeamCollision : MonoBehaviour
+{
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            PlayerHealth player = other.GetComponent<PlayerHealth>();
+            if (player != null)
+            {
+                player.Damaged();
+            }
+        }
     }
 }

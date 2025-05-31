@@ -9,7 +9,6 @@ public class PlayerController : MonoBehaviour
 
     [Header("Components")]
     private Rigidbody2D rb;
-    private Animator animator;
 
     [Header("Movement Settings")]
     [SerializeField] private float movePower = 2f;       // 기본 이동 속도
@@ -37,7 +36,6 @@ public class PlayerController : MonoBehaviour
     }
     void Start()
     {
-        //animator = GetComponent<Animator>();
         SetMoveMode(currentMode);
     }
 
@@ -56,19 +54,12 @@ public class PlayerController : MonoBehaviour
         {
             HandleTopDownMovement();
         }
-
-        //if (PlayerHp.health <= 0)
-        //{
-        //    Die();
-        //}
     }
 
     void HandleSideScrollMovement()
     {
         float moveX = Input.GetAxisRaw("Horizontal");
         rb.linearVelocity = new Vector2(moveX * movePower, rb.linearVelocity.y);
-        // 이동 애니메이션 설정
-        //animator.SetFloat("Speed", Mathf.Abs(moveX));
     }
 
     void HandleSideScrollJump()
@@ -115,11 +106,6 @@ public class PlayerController : MonoBehaviour
     void CheckGrounded()
     {
         isGrounded = groundCheck != null && Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
-    }
-
-    public void Die()
-    {
-
     }
 
     public void SetMoveMode(MoveMode mode)

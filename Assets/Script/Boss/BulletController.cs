@@ -3,13 +3,13 @@ using UnityEngine;
 public class BulletController : MonoBehaviour
 {
     public float speed = 5f;
-    public float rotateSpeed = 30f; // ÃÑ¾ËÀÌ ÈÖ¾îÁö´Â Á¤µµ (µµ/ÃÊ)
+    public float rotateSpeed = 30f; // ì˜¤ë¥¸ìª½ íšŒì „ ê°ë„ (ë„/ì´ˆ)
     private Vector3 currentDirection;
-    public float lifetime = 5f; // ÀÚµ¿ ÆÄ±« Å¸ÀÌ¸Ó
+    public float lifetime = 5f; // ìµœëŒ€ ìˆ˜ëª…
 
     void Start()
     {
-        // ÀÏÁ¤ ½Ã°£ÀÌ Áö³ª¸é ÀÚµ¿ ÆÄ±«
+        // ìµœëŒ€ ìˆ˜ëª… ë™ì•ˆ ìœ ì§€
         Destroy(gameObject, lifetime);
     }
 
@@ -20,10 +20,10 @@ public class BulletController : MonoBehaviour
 
     void Update()
     {
-        // ¹æÇâÀ» È¸Àü½ÃÅ´
+        // ì˜¤ë¥¸ìª½ìœ¼ë¡œ íšŒì „
         currentDirection = Quaternion.Euler(0, 0, rotateSpeed * Time.deltaTime) * currentDirection;
 
-        // ÀÌµ¿
+        // ì´ë™
         transform.position += currentDirection * speed * Time.deltaTime;
     }
 
@@ -31,8 +31,12 @@ public class BulletController : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            // µ¥¹ÌÁö Ã³¸®
-            Destroy(gameObject);
+            PlayerHealth player = other.GetComponent<PlayerHealth>();
+            if (player != null)
+            {
+                player.Damaged();
+            }
         }
+        Destroy(gameObject);
     }
 }

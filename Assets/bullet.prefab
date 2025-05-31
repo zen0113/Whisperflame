@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4956787390092712610}
   - component: {fileID: 6509622631176536992}
   - component: {fileID: -3242946339631911458}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: bullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -103,6 +103,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 1
   rotateSpeed: 30
+  lifetime: 5
 --- !u!58 &-3242946339631911458
 CircleCollider2D:
   m_ObjectHideFlags: 0
