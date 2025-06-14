@@ -25,6 +25,12 @@ public class PlayerAttack : MonoBehaviour
         // 속도 설정
         rb.linearVelocity = transform.up * speed;
         
+        // 공격 효과음 재생
+        if (AudioManager.Instance != null)
+        {
+            AudioManager.Instance.PlaySFX(AudioManager.Instance.playerAttack);
+        }
+        
         // 일정 시간 후 제거
         Destroy(gameObject, lifeTime);
     }

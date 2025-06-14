@@ -10,6 +10,7 @@ public class PlayerHealth : MonoBehaviour
     public Image[] hearts;
     public Sprite fullHeart;
     public Sprite emptyHeart;
+    public GameObject effectObject;
 
     private Animator animator;
 
@@ -96,6 +97,13 @@ public class PlayerHealth : MonoBehaviour
             animator.SetTrigger("Damaged");
         }
 
+        // 데미지 효과음 재생 및 배경음악 볼륨 일시적 감소
+        if (AudioManager.Instance != null)
+        {
+            AudioManager.Instance.PlaySFX(AudioManager.Instance.playerHurt);
+            //AudioManager.Instance.TemporarilyLowerBGMVolume(1f, 0.2f);  // 1초 동안 볼륨 20%로 감소
+        }
+
         isInvincible = true;
         gameObject.layer = LayerMask.NameToLayer("Invincible");
 
@@ -104,6 +112,10 @@ public class PlayerHealth : MonoBehaviour
             StartCoroutine(cameraShake.Shake(0.15f, 0.2f));
         }
 
+        // 깜빡임 시작
+        StartCoroutine(FlashWhileInvincible());
+
+        // 일정 시간 후 무적 해제
         Invoke("OffDamaged", invincibleDuration);
     }
 
@@ -113,10 +125,38 @@ public class PlayerHealth : MonoBehaviour
         gameObject.layer = LayerMask.NameToLayer("Player");
     }
 
+    private IEnumerator FlashWhileInvincible()
+    {
+        SpriteRenderer sr = GetComponent<SpriteRenderer>();
+        float elapsed = 0f;
+        float flashInterval = 0.1f;
+
+        while (elapsed < invincibleDuration)
+        {
+            if (sr != null)
+                sr.enabled = !sr.enabled; // 깜빡이기 ON/OFF
+
+            yield return new WaitForSeconds(flashInterval);
+            elapsed += flashInterval;
+        }
+
+        if (sr != null)
+            sr.enabled = true; // 보이도록 복원
+    }
+
     public void Die()
     {
         if (isDead) return;
         isDead = true;
+
+        effectObject.gameObject.SetActive(false);
+
+        // 사망 효과음 재생 및 배경음악 끄기
+        if (AudioManager.Instance != null)
+        {
+            AudioManager.Instance.PlaySFX(AudioManager.Instance.playerDeath);
+            //AudioManager.Instance.StopBGM(true);  // 페이드 아웃 효과와 함께 배경음악 끄기
+        }
 
         waveManager.GetComponent<BattleWaveManager>().enabled = false;
         wave1Spawners.GetComponent<MeteoAttack>().enabled = false;
@@ -143,7 +183,6 @@ public class PlayerHealth : MonoBehaviour
             animator.SetBool("Dead", true);
         }
 
-
         // 4. 잠시 대기
         yield return new WaitForSeconds(1.0f);
 
@@ -153,10 +192,17 @@ public class PlayerHealth : MonoBehaviour
             yield return StartCoroutine(FadeToBlack());
         }
 
-        // 6. 씬 전환
-        //SceneManager.LoadScene("TitleScene");
+        // 6. SceneLoader를 통해 씬 전환
+        if (SceneLoader.Instance != null)
+        {
+            SceneLoader.Instance.LoadSceneByName("TitleScene");
+        }
+        else
+        {
+            Debug.LogError("SceneLoader not found!");
+            SceneManager.LoadScene("TitleScene");
+        }
     }
-
 
     IEnumerator FadeToBlack()
     {

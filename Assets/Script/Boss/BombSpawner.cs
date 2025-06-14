@@ -4,8 +4,8 @@ public class BombSpawner : MonoBehaviour
 {
     public GameObject bombPrefab;
     public float spawnInterval = 3f;
-    public Vector2 spawnAreaMin;  // ¿¹: (-8, -4)
-    public Vector2 spawnAreaMax;  // ¿¹: (8, 4)
+    public Vector2 spawnAreaMin;  // ï¿½ï¿½: (-8, -4)
+    public Vector2 spawnAreaMax;  // ï¿½ï¿½: (8, 4)
 
     private float timer = 0f;
 
@@ -28,5 +28,10 @@ public class BombSpawner : MonoBehaviour
         );
 
         Instantiate(bombPrefab, spawnPos, Quaternion.identity);
+    }
+
+    void OnDisable()
+    {
+        CancelInvoke();
     }
 }

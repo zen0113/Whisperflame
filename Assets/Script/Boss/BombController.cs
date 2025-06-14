@@ -14,6 +14,12 @@ public class BombController : MonoBehaviour
 
     void Explode()
     {
+        // í­ë°œ íš¨ê³¼ìŒ ì¬ìƒ
+        if (AudioManager.Instance != null)
+        {
+            AudioManager.Instance.PlaySFX(AudioManager.Instance.bombExplode);
+        }
+
         float angleStep = 360f / projectileCount;
 
         for (int i = 0; i < projectileCount; i++)
@@ -25,6 +31,6 @@ public class BombController : MonoBehaviour
             bullet.GetComponent<BulletController>().Initialize(direction);
         }
 
-        Destroy(gameObject); // ÆøÅº ¿ÀºêÁ§Æ® Á¦°Å
+        Destroy(gameObject); // í­íƒ„ ê²Œì„ì˜¤ë¸Œì íŠ¸ ì œê±°
     }
 }

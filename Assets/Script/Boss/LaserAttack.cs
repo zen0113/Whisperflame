@@ -26,10 +26,21 @@ public class LaserAttack : MonoBehaviour
         yield return new WaitForSeconds(warningTime);
         Destroy(warn);
 
+        // 레이저 공격 효과음 재생
+        if (AudioManager.Instance != null)
+        {
+            AudioManager.Instance.PlaySFX(AudioManager.Instance.laserAttack);
+        }
+
         GameObject beam = Instantiate(laserBeamPrefab, lane.position, Quaternion.identity);
         beam.AddComponent<LaserBeamCollision>();
         yield return new WaitForSeconds(laserDuration);
         Destroy(beam);
+    }
+
+    void OnDisable()
+    {
+        CancelInvoke();
     }
 }
 
@@ -48,3 +59,4 @@ public class LaserBeamCollision : MonoBehaviour
         }
     }
 }
+

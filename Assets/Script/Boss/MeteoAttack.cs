@@ -18,4 +18,9 @@ public class MeteoAttack : MonoBehaviour
         Vector3 spawnPos = new Vector3(x, transform.position.y, 0);
         Instantiate(meteorPrefab, spawnPos, Quaternion.identity);
     }
+
+    void OnDisable()
+    {
+        CancelInvoke();
+    }
 }
