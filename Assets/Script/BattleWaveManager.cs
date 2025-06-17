@@ -404,6 +404,12 @@ public class BattleWaveManager : MonoBehaviour
             gameClearText.SetActive(true);
         }
 
+        // GameTimeManager에 게임 종료 알림 (시간 측정 종료 및 자동 타이틀 이동)
+        if (GameTimeManager.Instance != null)
+        {
+            GameTimeManager.Instance.EndGame();
+        }
+
         Debug.Log("Game Clear 처리 완료!");
     }
 }
