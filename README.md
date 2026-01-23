@@ -2,7 +2,7 @@
 
 > **사이드뷰 플랫포머 ↔ 탑다운 슈팅이 실시간으로 전환되는 장르 융합형 보스전 게임**
 
-![Demo GIF](./assets/demo.gif)
+https://youtu.be/-_z0IJ-bDIc
 
 ## 💡 주요 기능 (Key Features)
 
