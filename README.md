@@ -1,36 +1,24 @@
-# 🎮 Whisper Flame
+# 🔥 Whisper Flame
 
-## 🔍 프로젝트 설명
-Whisper Flame은 전투 단계(웨이브)에 따라 플레이어의 조작 방식(횡스크롤/탑다운 뷰)과 보스 패턴이 변화하는 2D 보스 배틀 게임입니다. 역동적인 게임플레이 메커니즘과 시각적으로 매력적인 그래픽으로 흥미진진한 게임 경험을 제공합니다.
+> **사이드뷰 플랫포머 ↔ 탑다운 슈팅이 실시간으로 전환되는 장르 융합형 보스전 게임**
 
-## ✨ 주요 특징
-- 🎮 **다이나믹한 게임플레이**: 전투 단계에 따라 플레이어의 조작 방식과 보스 패턴이 변화하는 독특한 메커니즘을 특징으로 합니다.
-- 🕹️ **다중 시점**: 횡스크롤과 탑다운 뷰 모드를 모두 포함하여 다양한 게임 경험을 제공합니다.
-- 📊 **점수 관리**: 클리어 타임, 랭크, 날짜를 추적하는 점수 관리 시스템이 포함되어 있습니다.
-- 🌊 **배틀 웨이브**: 각각 고유한 도전을 제공하는 다양한 배틀 웨이브를 통해 게임이 진행됩니다.
-- 💥 **다양한 공격**: 폭탄 생성, 레이저 공격, 메테오 공격 등 수많은 공격 패턴을 특징으로 합니다.
-- 🎵 **사운드 관리**: 배경음악과 효과음을 관리하는 오디오 매니저가 포함되어 있습니다.
+![Demo GIF](./assets/demo.gif)
 
-## 🎮 게임 플레이
+## 💡 주요 기능 (Key Features)
 
-### 조작법
-- **이동**: 화살표 키 또는 WASD
-- **공격**: 스페이스바
-- **특수 공격**: Shift키
+* **Dynamic Genre Switching:** 플레이 도중 중력과 시점이 실시간으로 변하는 독창적 시스템.
+* **Wave-Based Boss FSM:** HP와 시간 흐름에 따라 변하는 보스 패턴 구현.
+* **Custom Bullet Logic:** 삼각함수(Trigonometric)를 활용한 방사형/나선형 탄막 패턴.
 
-### 게임 모드
-- **횡스크롤 모드**: 전통적인 사이드뷰 슈팅 게임
-- **탑다운 모드**: 위에서 내려다보는 시점의 전투
+## 💻 기술적 도전 (Technical Challenges)
 
-## 📁 프로젝트 구조
-```
-Assets/
-├── Scripts/
-│   ├── Player/
-│   ├── Boss/
-│   ├── Managers/
-│   └── UI/
-├── Sprites/
-├── Audio/
-└── Scenes/
-```
+### 💥 실시간 장르 전환 시스템 (Physics & Input Handling)
+**Challenge:** 하나의 캐릭터 객체가 '중력이 있는 플랫포머'와 '무중력 비행 슈팅'을 오가야 하는 문제.
+**Solution:**
+1.  **Gravity Control:** `Rigidbody2D.gravityScale`을 런타임에 조절 (TopDown: 0 / SideView: 2).
+2.  **Physics Reset:** 모드 전환 순간 `linearVelocity`를 초기화하여 이전 모드의 물리 관성이 남지 않도록 처리.
+3.  **Hybrid Input Handler:** `MoveMode` Enum 상태에 따라 입력 처리 로직(점프 vs 8방향 이동)을 분기 처리하는 하이브리드 컨트롤러 구현.
+
+### 🏛️ 구조적 설계 (Architecture)
+* **FSM (Finite State Machine):** 보스의 상태(Start, Update) 로직을 분리하여 유지보수성 강화.
+* **Data Persistence:** PlayerPrefs와 LINQ(OrderBy)를 활용한 로컬 랭킹 시스템 구축.
