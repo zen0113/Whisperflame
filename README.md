@@ -1,18 +1,16 @@
 <!-- ===================== -->
-
 <!--  GitHub Project README -->
-
 <!-- ===================== -->
 
 <div align="center">
 
-![header](https://capsule-render.vercel.app/api?type=waving\&color=gradient\&customColorList=6,11,20\&height=180\&section=header\&text=Whisper%20Flame\&fontSize=64\&animation=twinkling)
+![header](https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=180&section=header&text=Whisper%20Flame&fontSize=64&animation=twinkling)
 
 </div>
 
 <br>
 
-## Overview
+## 📌 Overview
 
 사이드뷰 플랫포머와 탑다운 슈팅을 **실시간으로 전환하는 장르 융합형 보스전 게임**입니다.
 
@@ -36,7 +34,7 @@
 
 <br><br><br>
 
-## Demo
+## 🎮 Demo
 
 <div align="center">
 
@@ -50,7 +48,9 @@
 
 <br><br><br>
 
-## Core Systems
+## 💻 Core Systems
+
+<br>
 
 ### Dynamic Genre Switching
 
@@ -65,7 +65,6 @@
 * `SetMoveMode` 함수를 중심으로 이동 모드 제어
 * 모드에 따라 Rigidbody2D의 중력 및 제약 조건을 동적 변경
 * 전환 시 이전 물리 관성을 초기화하여 조작 붕괴 방지
-
 ```csharp
 void SetMoveMode(MoveMode mode) {
     currentMode = mode;
@@ -116,7 +115,9 @@ Enum 기반 FSM으로 관리했습니다.
 
 <br><br><br>
 
-## Combat Design
+## 🎯 Combat Design
+
+<br>
 
 ### Phase Structure
 
@@ -139,9 +140,10 @@ Enum 기반 FSM으로 관리했습니다.
 
 <br><br><br>
 
-## Data & Persistence
+## 💾 Data & Persistence
 
 <img src="https://github.com/zen0113/Whisperflame/blob/main/whisperflame_4.png?raw=true" width="320"/>
+
 플레이 데이터는
 간단하지만 확장 가능한 구조로 관리했습니다.
 
@@ -150,12 +152,12 @@ Enum 기반 FSM으로 관리했습니다.
 
 <br><br><br>
 
-## Technical Stack
+## 🛠 Technical Stack
 
 <div align="center">
 
-![Unity](https://img.shields.io/badge/Unity-000000?style=for-the-badge\&logo=unity\&logoColor=white)
-![C#](https://img.shields.io/badge/C%23-239120?style=for-the-badge\&logo=csharp\&logoColor=white)
+![Unity](https://img.shields.io/badge/Unity-000000?style=for-the-badge&logo=unity&logoColor=white)
+![C#](https://img.shields.io/badge/C%23-239120?style=for-the-badge&logo=csharp&logoColor=white)
 
 </div>
 
@@ -171,7 +173,7 @@ Enum 기반 FSM으로 관리했습니다.
 
 <br><br><br>
 
-## Development Notes
+## 📊 Development Notes
 
 3주라는 제한된 일정 안에서
 모든 기능을 넣기보다는
@@ -183,7 +185,7 @@ Enum 기반 FSM으로 관리했습니다.
 
 <br><br><br>
 
-## Lessons Learned
+## 📚 Lessons Learned
 
 이번 프로젝트를 통해
 다음과 같은 점을 학습했습니다.
@@ -197,6 +199,6 @@ Enum 기반 FSM으로 관리했습니다.
 
 <div align="center">
 
-![footer](https://capsule-render.vercel.app/api?type=waving\&color=gradient\&customColorList=6,11,20\&height=120\&section=footer)
+![footer](https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=120&section=footer)
 
 </div>
