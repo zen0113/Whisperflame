@@ -7,6 +7,8 @@
 
 </div>
 
+<br>
+
 ## 📌 Overview
 
 **장르 융합형 보스전 게임** - 사이드뷰 플랫포머와 탑다운 슈팅의 실시간 전환
@@ -24,7 +26,23 @@
 
 </div>
 
----
+<br>
+
+## 📹 Demo Video
+
+<div align="center">
+
+https://github.com/zen0113/Whisperflame/blob/main/whisperflame_1.gif
+https://github.com/zen0113/Whisperflame/blob/main/whisperflame_2.gif
+https://github.com/zen0113/Whisperflame/blob/main/whisperflame_3.gif
+
+*또는 유튜브 링크를 사용하는 경우:*
+
+[![Watch the video](https://img.youtube.com/vi/YOUR_YOUTUBE_VIDEO_ID/maxresdefault.jpg)](https://youtu.be/YOUR_YOUTUBE_VIDEO_ID)
+
+</div>
+
+<br>
 
 ## 🎮 Core Features
 
@@ -66,7 +84,7 @@ void SetMoveMode(MoveMode mode) {
 - **라이프사이클 분리**: 상태 진입(Start)과 갱신(Update) 로직을 분리하여 코드 결합도를 낮추고 유지보수성 강화
 - **Hybrid Flow Control**: 보스 이동 및 컷신 연출 등 비동기 작업에는 Coroutine을, 실시간 로직 판정에는 Update를 적재적소에 활용하여 최적화된 흐름 구현
 
----
+<br>
 
 ## 🎯 전투 시스템 기획
 
@@ -81,7 +99,7 @@ void SetMoveMode(MoveMode mode) {
 - **사이드뷰 단계**: '점프' 기반 회피 메커닉
 - **탑다운 단계**: '정밀 회피' 요구하는 페이즈별 기믹(Gimmick) 차별화
 
----
+<br>
 
 ## 💾 Data Structure & System
 
@@ -89,7 +107,7 @@ void SetMoveMode(MoveMode mode) {
 - **PlayerPrefs**로 데이터를 영속화
 - **LINQ(OrderBy)**를 활용한 정렬 로직을 통해 즉각적인 랭킹 시스템 구축
 
----
+<br>
 
 ## 🛠 Technical Stack
 
@@ -107,7 +125,7 @@ void SetMoveMode(MoveMode mode) {
 - LINQ Query
 - PlayerPrefs
 
----
+<br>
 
 ## 📊 Development Management
 
@@ -120,7 +138,7 @@ void SetMoveMode(MoveMode mode) {
 **Polishing**
 - 무료 에셋의 스프라이트 색상 변조 및 파티클 커스텀을 통해 일관된 아트 톤앤매너 유지
 
----
+<br>
 
 ## 🎓 What I Learned
 
@@ -129,19 +147,6 @@ void SetMoveMode(MoveMode mode) {
 - 제한된 시간 내에서의 스코프 관리와 우선순위 설정
 - 비동기 로직과 동기 로직의 적절한 분리 및 활용
 
----
-
-## 📹 Demo
-
-<div align="center">
-
-[![YouTube Video](https://img.shields.io/badge/▶️_Watch_Demo-FF0000?style=for-the-badge&logo=youtube&logoColor=white)](YOUR_YOUTUBE_LINK)
-
-</div>
-
----
-
-
 <br>
 
 <div align="center">
@@ -149,3 +154,6 @@ void SetMoveMode(MoveMode mode) {
 ![footer](https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=120&section=footer)
 
 </div>
+```
+
+<br>
