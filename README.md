@@ -142,7 +142,7 @@ Enum 기반 FSM으로 관리했습니다.
 
 ## 💾 Data & Persistence
 
-<img src="https://github.com/zen0113/Whisperflame/blob/main/whisperflame_4.png?raw=true" width="320"/>
+<img src="https://github.com/zen0113/Whisperflame/blob/main/whisperflame_4.png?raw=true" width="640"/>
 
 플레이 데이터는
 간단하지만 확장 가능한 구조로 관리했습니다.
