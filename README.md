@@ -1,74 +1,70 @@
-<div align="center">
+<!-- ===================== -->
 
-![header](https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=200&section=header&text=Whisper%20Flame&fontSize=70&animation=twinkling)
+<!--  GitHub Project README -->
 
-
-</div>
-
-<br><br>
-
-## 📌 Overview
-
-**장르 융합형 보스전 게임** - 사이드뷰 플랫포머와 탑다운 슈팅의 실시간 전환
-
-동적 물리 제어 시스템을 통해 장르와 조작 방식이 실시간으로 전환되는 독창적인 액션 게임
-
-<br>
+<!-- ===================== -->
 
 <div align="center">
 
-| | |
-|:---:|:---:|
-| **개발 기간** | 2025.05.24 ~ 2025.06.17 (3주) |
-| **플랫폼** | Unity 2D |
-| **개발 형태** | Solo Project |
-| **역할** | Programmer, Game Designer |
+![header](https://capsule-render.vercel.app/api?type=waving\&color=gradient\&customColorList=6,11,20\&height=180\&section=header\&text=Whisper%20Flame\&fontSize=64\&animation=twinkling)
 
 </div>
 
-<br><br><br>
+---
 
-## 📹 Demo
+## Overview
+
+**사이드뷰 플랫포머와 탑다운 슈팅을 실시간으로 전환하는 장르 융합형 보스전 게임**
+
+물리 시스템, 카메라, 입력 구조를 하나의 제어 흐름으로 통합하여
+플레이 도중 장르와 조작 방식이 자연스럽게 전환되는 액션 게임입니다.
+
+---
+
+### Project Information
 
 <div align="center">
 
-<img src="https://github.com/zen0113/Whisperflame/blob/main/whisperflame_1.gif?raw=true" width="80%">
-
-<br><br>
-
-<img src="https://github.com/zen0113/Whisperflame/blob/main/whisperflame_2.gif?raw=true" width="80%">
-
-<br><br>
-
-<img src="https://github.com/zen0113/Whisperflame/blob/main/whisperflame_3.gif?raw=true" width="80%">
+| 항목    | 내용                           |
+| :---- | :--------------------------- |
+| 개발 기간 | 2025.05.24 ~ 2025.06.17 (3주) |
+| 플랫폼   | Unity 2D                     |
+| 개발 형태 | 1인 개발                        |
+| 역할    | 프로그래밍 / 게임 기획                |
 
 </div>
 
-<br><br><br>
+---
 
-## 🎮 Core Features
+## Demo
 
-<br>
+<div align="center">
 
-### 🔄 Dynamic Genre Switching System
+|                                                 플레이 화면                                                 | 설명                                     |
+| :----------------------------------------------------------------------------------------------------: | :------------------------------------- |
+| <img src="https://github.com/zen0113/Whisperflame/blob/main/whisperflame_1.gif?raw=true" width="320"/> | 중력이 적용되는 사이드뷰 구간으로 점프 기반 회피 중심 전투      |
+| <img src="https://github.com/zen0113/Whisperflame/blob/main/whisperflame_2.gif?raw=true" width="320"/> | 중력이 제거된 탑다운 구간에서 자유 이동과 정밀 회피를 요구하는 전투 |
+| <img src="https://github.com/zen0113/Whisperflame/blob/main/whisperflame_3.gif?raw=true" width="320"/> | 전투 도중 장르가 전환되며 보스 패턴이 변화하는 핵심 시스템      |
 
-**핵심 문제**
+</div>
 
-하나의 캐릭터가 중력이 있는 '플랫포머'와 중력이 없는 '탑다운' 방식을 오가야 함
+---
 
-<br>
+## Core Systems
 
-**구현 방식**
+### Dynamic Genre Switching
 
-- `SetMoveMode` 함수를 통해 Rigidbody2D 설정을 동적으로 재할당
+**문제 상황**
+하나의 캐릭터가 중력이 존재하는 사이드뷰와 중력이 없는 탑다운 방식을 오가며
+이질감 없는 조작감을 유지해야 했습니다.
 
-- **Gravity Control**: 탑다운 모드 진입 시 `gravityScale = 0`으로 설정하여 자유 비행 구현, 사이드뷰 복귀 시 중력 복원
+**해결 방식**
 
-- **Physics Reset**: 모드 전환 순간 이전 물리 관성(`linearVelocity`)을 초기화하여 조작감의 이질감 제거
+* `SetMoveMode` 함수를 중심으로 이동 모드를 단일 진입점에서 제어
+* 모드에 따라 Rigidbody2D의 중력 및 제약 조건을 동적으로 재설정
+* 모드 전환 시 이전 물리 관성 값을 초기화하여 조작감 붕괴 방지
 
-<br>
 ```csharp
-// 핵심 코드 예시
 void SetMoveMode(MoveMode mode) {
     currentMode = mode;
     if (mode == MoveMode.TopDown) {
@@ -82,145 +78,94 @@ void SetMoveMode(MoveMode mode) {
 }
 ```
 
-<br><br>
+---
 
-### 🎯 물리 & 시점 제어
+### Physics & Camera Control
 
-- **Genre Switching System**: Rigidbody2D의 `gravityScale`과 `Constraints`를 런타임에 제어하여 사이드뷰↔탑다운 물리 설정 실시간 전환
+* 이동 모드에 따라 `gravityScale`, `constraints`를 런타임에 전환
+* Enum 기반 입력 분기를 통해 점프 중심 / 자유 이동 입력을 구분 처리
+* 장르 전환 시 카메라 오프셋과 추적 속도를 Lerp로 보정하여 시각적 위화감 최소화
 
-- **Hybrid Input Handler**: 이동 모드(Enum)에 따라 점프(Y축)와 상하좌우(XY축) 입력을 분기 처리하는 하이브리드 컨트롤러 구현
+---
 
-- **Seamless Transition**: 장르 변화 시 카메라 오프셋과 추적 속도를 Lerp로 보정하여 시각적 위화감 최소화
+### Bullet Pattern System
 
-<br><br>
+* 삼각함수 기반 로직으로 방사형, 나선형 등 수학적 규칙을 가진 탄막 패턴 설계
+* Coroutine을 활용해 경고 → 딜레이 → 발사의 흐름을 비동기적으로 제어
 
-### 💫 탄막 알고리즘
+---
 
-- **Trigonometric Logic**: 삼각함수를 활용해 360도 방사형, 나선형 등 수학적 원리를 적용한 탄막 패턴 설계
+### Boss FSM Architecture
 
-- **Async Pattern Logic**: Coroutine을 활용한 비동기 시퀀스 제어로 [경고 → 딜레이 → 발사]의 타이밍을 정교하게 관리하여 리듬감 있는 공격 구현
+* Enum 기반 FSM으로 보스 상태를 관리
+* 체력 기반 페이즈와 시간 기반 페이즈를 혼합한 전환 조건 설계
+* 상태 진입 로직과 갱신 로직을 분리하여 유지보수성과 확장성 확보
 
-<br><br>
+---
 
-### 🤖 Wave-Based Boss FSM
+## Combat Design
 
-**FSM 상태 제어**
+### Phase Structure
 
-Enum과 Update 루프로 'HP(1페이즈) → 시간(2페이즈)' 등 상이한 전환 조건을 정밀하게 관리
+`BattleWaveManager`를 통해 전투 흐름을 3단계로 구조화했습니다.
 
-<br>
+1. 체력 기반 패턴 공격 구간
+2. 제한 시간 동안 생존하는 미션 구간
+3. 최종 격파 구간
 
-**구현 특징**
+### Mechanic Differentiation
 
-- **라이프사이클 분리**: 상태 진입(Start)과 갱신(Update) 로직을 분리하여 코드 결합도를 낮추고 유지보수성 강화
+* 사이드뷰 구간: 점프를 활용한 수직 회피 중심 설계
+* 탑다운 구간: 정밀한 위치 조정과 공간 인지를 요구하는 회피 메커닉
 
-- **Hybrid Flow Control**: 보스 이동 및 컷신 연출 등 비동기 작업에는 Coroutine을, 실시간 로직 판정에는 Update를 적재적소에 활용하여 최적화된 흐름 구현
+---
 
-<br><br><br>
+## Data & Persistence
 
-## 🎯 전투 시스템 기획
+<img src="https://github.com/zen0113/Whisperflame/blob/main/whisperflame_4.png?raw=true" width="320"/>
+* PlayerPrefs를 사용해 플레이 데이터 영속화
+* LINQ(`OrderBy`) 기반 정렬을 통해 즉각적인 랭킹 시스템 구현
 
-<br>
+---
 
-### Phase-Based Design
-
-`BattleWaveManager`를 통해 전투를 3단계로 구조화하여 기승전결 구현
-
-<br>
-
-1. **1단계**: HP 기반 패턴 공격
-
-2. **2단계**: 시간 버티기 미션
-
-3. **3단계**: 최종 격파
-
-<br><br>
-
-### Mechanic Design
-
-- **사이드뷰 단계**: '점프' 기반 회피 메커닉
-
-- **탑다운 단계**: '정밀 회피' 요구하는 페이즈별 기믹(Gimmick) 차별화
-
-<br><br><br>
-
-## 💾 Data Structure & System
-
-<br>
-
-### Data Persistence & Sorting
-
-- **PlayerPrefs**로 데이터를 영속화
-
-- **LINQ(OrderBy)**를 활용한 정렬 로직을 통해 즉각적인 랭킹 시스템 구축
-
-<br><br><br>
-
-## 🛠 Technical Stack
-
-<br>
+## Technical Stack
 
 <div align="center">
 
-![Unity](https://img.shields.io/badge/Unity-000000?style=for-the-badge&logo=unity&logoColor=white)
-![C#](https://img.shields.io/badge/C%23-239120?style=for-the-badge&logo=csharp&logoColor=white)
+![Unity](https://img.shields.io/badge/Unity-000000?style=for-the-badge\&logo=unity\&logoColor=white)
+![C#](https://img.shields.io/badge/C%23-239120?style=for-the-badge\&logo=csharp\&logoColor=white)
 
 </div>
 
-<br>
+**주요 기술 요소**
 
-**주요 기술**
+* Rigidbody2D 물리 제어
+* Coroutine 기반 비동기 처리
+* FSM(Finite State Machine)
+* LINQ
+* PlayerPrefs
 
-- Rigidbody2D Physics Control
+---
 
-- Coroutine-based Async Pattern
+## Development Notes
 
-- FSM (Finite State Machine)
+* 3주라는 제한된 기간 내에서 장르 전환이라는 핵심 메커닉에 집중
+* 기능 확장보다 플레이 가능한 완성 빌드를 우선 목표로 설정
+* 무료 에셋을 기반으로 색상 및 파티클을 수정하여 시각적 통일성 확보
 
-- LINQ Query
+---
 
-- PlayerPrefs
+## Lessons Learned
 
-<br><br><br>
+* 물리 엔진의 동적 제어를 통해 게임 플레이 경험을 다양화할 수 있음을 체감
+* FSM 구조가 복잡한 보스 패턴 관리에 효과적임을 학습
+* 제한된 일정에서의 스코프 관리와 우선순위 설정의 중요성 인식
+* 동기 로직과 비동기 로직을 명확히 분리하는 설계의 필요성
 
-## 📊 Development Management
-
-<br>
-
-### 1인 개발 관리
-
-<br>
-
-**Scope Management**
-
-- 3주라는 제한된 기간 내에 '장르 전환'이라는 핵심 코어(Core)에 집중
-
-- 플레이 가능한 빌드 완성을 최우선 목표로 설정
-
-<br>
-
-**Polishing**
-
-- 무료 에셋의 스프라이트 색상 변조 및 파티클 커스텀을 통해 일관된 아트 톤앤매너 유지
-
-<br><br><br>
-
-## 🎓 What I Learned
-
-<br>
-
-- 물리 엔진의 동적 제어를 통한 게임플레이 다양화
-
-- FSM 패턴을 활용한 복잡한 보스 AI 구현
-
-- 제한된 시간 내에서의 스코프 관리와 우선순위 설정
-
-- 비동기 로직과 동기 로직의 적절한 분리 및 활용
-
-<br><br><br>
+---
 
 <div align="center">
 
-![footer](https://capsule-render.vercel.app/api?type=waving&color=gradient&customColorList=6,11,20&height=120&section=footer)
+![footer](https://capsule-render.vercel.app/api?type=waving\&color=gradient\&customColorList=6,11,20\&height=120\&section=footer)
 
 </div>
