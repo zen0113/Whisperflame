@@ -44,7 +44,7 @@
 | :----------------------------------------------------------------------------------------------------: | :------------------------------------- |
 | <img src="https://github.com/zen0113/Whisperflame/blob/main/whisperflame_1.gif?raw=true" width="320"/> <img src="https://github.com/zen0113/Whisperflame/blob/main/whisperflame_2.gif?raw=true" width="320"/> | 중력이 적용되는 사이드뷰 구간으로 점프 기반 회피 중심 전투      |
 | <img src="https://github.com/zen0113/Whisperflame/blob/main/whisperflame_5.gif?raw=true" width="320"/> | 중력이 제거된 탑다운 구간에서 자유 이동과 정밀 회피를 요구하는 전투 |
-| <img src="https://github.com/zen0113/Whisperflame/blob/main/whisperflame_3.gif?raw=true" width="320"/> | 전투 도중 장르가 전환되며 보스 패턴이 변화하는 핵심 시스템      |
+| <img src="https://github.com/zen0113/Whisperflame/blob/main/whisperflame_3.gif?raw=true" width="320"/> | 게임 클리어 화면     |
 
 </div>
 
